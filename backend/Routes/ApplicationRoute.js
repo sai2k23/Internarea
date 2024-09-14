@@ -15,15 +15,16 @@ router.post("/",async (req,res)=>{
         res.send(data)
     }).catch((error)=>{
         console.log(error,"not able to post the data")
+        res.status(500).json({ error: "Internal server error" });
     })
 })
 router.get("/", async (req,res)=>{
     try {
         const data=await application.find();
-        res.json(data) .status(200)
+        res.status(200).json(data);
     } catch (error) {
         console.log(error);
-        res.status(404).json({error:"Internal server error "})
+        res.status(404).json({error:"Internal server error "});
     }
 })
 router.get("/:id", async (req,res)=>{
@@ -34,7 +35,7 @@ router.get("/:id", async (req,res)=>{
 
              res.status(404).json({error:"Application is not found "})
         }
-        res.json(data) .status(200)
+        res.status(200).json(data);
     } catch (error) {
         console.log(error);
         res.status(404).json({error:"Internal server error "})
@@ -64,8 +65,8 @@ router.put("/:id", async (req, res) => {
         );
 
         if (!updateApplication) {
-            res.status(404).json({ error: "Not able to update the application" });
-            return; 
+            return res.status(404).json({ error: "Not able to update the application" });
+          
         }
 
         res.status(200).json({ success: true, data: updateApplication });
