@@ -1,156 +1,161 @@
-import React, {useEffect, useState} from 'react'
-import first from '../../Assests/Firstslide.png'
-import second from '../../Assests/secondslide.webp'
-import third from '../../Assests/thirdsilde.webp'
-import fouth from '../../Assests/fourthslide.webp'
+import React, { useEffect, useState } from 'react'
+import first from  "../../Assets/Firstslide.png"
+import second from "../../Assets/secondslide.webp"
+import third from "../../Assets/thirdsilde.webp"
+import fouth from "../../Assets/fourthslide.webp"
 import "./home.css"
+import Job from './Job'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Job from './Job'
-
-
 function Home() {
-  const [currentSlide,setCurrentSlide]=useState(0)
-  const [selectedCategory,setSelectedCategory]= useState("Big Brands")
- const [interShipData,setInternshipData]=useState([])
 
- useEffect(()=>{
-  const fetchData= async()=>{
-      try {
-      const response= await axios.get(`https://internshipbackend-vbfz.onrender.com/api/internship`)
-      setInternshipData(response.data)
-  } catch (error) {
-         console.log(error) 
-  }
+
+    const [currentSlide,setCurrentSlide]=useState(0)
+    const [selectedCategory,setSelectedCategory]= useState("Big Brands")
+const [internshipData,setInternshipData]=useState([])
+useEffect(()=>{
+    const fetchData= async()=>{
+        try {
+        const response= await axios.get(`https://internareabackend-hui2.onrender.com/api/internship`)
+        setInternshipData(response.data)
+    } catch (error) {
+           console.log(error) 
+    }
 }
 fetchData();
 },[])
 
-  const filterInternSips=interShipData.filter((item)=>
-  !selectedCategory ||item.category === selectedCategory
-  )
+const filterInternShips=internshipData.filter((item)=>
+    !selectedCategory ||item.category === selectedCategory
+)
 
-   const handleSlide=(direction)=>{
-    const contianer=document.getElementById("container");
-    const step=100;
-    if (direction==='left') {
-        setCurrentSlide((preveSlibe)=>(preveSlibe>0 ?preveSlibe-1:0))
+
+    const handleSlide=(direction)=>{
+        const contianer=document.getElementById("container");
+        const step=100;
+        if (direction==='left') {
+            setCurrentSlide((preveSlibe)=>(preveSlibe>0 ?preveSlibe-1:0))
+        }
+        else{
+            setCurrentSlide((preveSlibe)=>(preveSlibe<3 ?preveSlibe+1:3))
+        }
+        sideScroll(contianer, direction, 25, step, 10)
     }
-    else{
-        setCurrentSlide((preveSlibe)=>(preveSlibe<3 ?preveSlibe+1:3))
+    const handleSlideIntern=(direction)=>{
+        const contianer=document.getElementById("container2");
+        const step=100;
+        if (direction==='left') {
+            setCurrentSlide((preveSlibe)=>(preveSlibe>0 ?preveSlibe-1:0))
+        }
+        else{
+            setCurrentSlide((preveSlibe)=>(preveSlibe<3 ?preveSlibe+1:3))
+        }
+        sideScrollIntern(contianer, direction, 25, step, 10)
     }
-    sideScroll(contianer, direction, 25, step, 10)
-}
-const handleSlideIntern=(direction)=>{
-  const contianer=document.getElementById("container2");
-  const step=100;
-  if (direction==='left') {
-      setCurrentSlide((preveSlibe)=>(preveSlibe>0 ?preveSlibe-1:0))
-  }
-  else{
-      setCurrentSlide((preveSlibe)=>(preveSlibe<3 ?preveSlibe+1:3))
-  }
-  sideScrollIntern(contianer, direction, 25, step, 10)
-}
   return (
-    
     <>
- <h1 className='text-center text-3xl font-bold'>Make your dream career a reality
+   <h1 className='text-center text-3xl font-bold'>Make your dream career a reality
 </h1>
 <p className='text-center text-lg font-bold'>Trending on InternArea 🔥</p>
 
-<div className="imgs flex justify-center relative" id="container">
-  <div className="slide flex mt-10" id="content">
-    <img className="slide_Img ml-4" src={first} alt="" />
-    <img className="slide_Img ml-4" src={second} alt="" />
-    <img className="slide_Img ml-4" src={third} alt="" />
-    <img className="slide_Img ml-4" src={fouth} alt="" />
-  </div>
+<div className="imgs flex justify-center"  id='container'>
+<div className="slide flex mt-10 " id='content'>
+    <img className='slide_Img ml-4' src={first} alt="" />
+    <img className='slide_Img ml-4' src={second} alt="" />
+    <img className='slide_Img ml-4' src={third} alt="" />
+    <img className='slide_Img ml-4' src={fouth} alt="" />
+</div>
 </div>
 <div className="flex BUttons">
-  <button className='back' onClick={() => handleSlide('left')}><i className="bi bi-chevron-left" id='sideBack'></i></button>
-  <button className="next" onClick={() => handleSlide('right')}><i className="bi bi-chevron-right" id='slide'></i></button>
+<button className='back' onClick={()=>handleSlide('left')}> <i className='bi bi-chevron-left' id='sideBack'></i></button>
+<button  className="next" onClick={()=>handleSlide('right')}> <i className='bi bi-chevron-right' id='slide'></i></button>
 </div>
 
 
-
-          <div className="infoys">
-            <div className="info-intern">
-              <div className='mt-16'>
-              <h1 className='text-center font-bold'>Latest internships on InternArea</h1>
-            </div>
-          
-            <div className="categories flex flex-wrap mt-14">
+<div className="infoys">
+    <div className="info-intern">
+        <div className="mt-16">
+            <h1 className='text-center font-bold'>Latest internships on Intern Area</h1>
+        </div>
+        <div className="categories flex flex-wrap mt-14">
 <p>POPULAR CATEGORIES :</p>
-<span className={`category mr-4 ml-6 ${selectedCategory==='Big Brands'?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory('Big Brands')}>Big Brands</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="Work From Home"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("Work From Home")}>Work From Home</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="Part-time"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("Part-time")}>Part-time</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="MBA"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("MBA")}>MBA</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="Engineering"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("Engineering")}>Engineering</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="media"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("media")}>Media</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="Design"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("Design")}>Design</span>
-<span className={`category mr-4 ml-6 ${selectedCategory==="Data Science"?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory("Data Science")}>Data Science</span>
-
-            </div>
-            </div>
-            <div className="internships" id='container2'>
-              <div className="internShip-Info flex">
-                  {
-                  filterInternSips.map((data,index)=>(
-                       
-                         <div className="int-1 mt-6" key={index}>
-                    <p className='mb-4 mt-3'id='boxer'><i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
-                    <p>{data.title}</p>
-                    <small className='text-slate-400 text-sm'>{data.company}</small>
-                    <hr className='mt-5' />
+<span className={`category mr-4 ml-6 ${ selectedCategory==='Big Brands'?'bg-blue-500 text-white':""}`} onClick={()=>setSelectedCategory('Big Brands')}>Big Brands</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="Work From Home"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("Work From Home")}>Work From Home</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="Part-time"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("Part-time")}>Part-time</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="MBA"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("MBA")}>MBA</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="Engineering"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("Engineering")}>Engineering</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="media"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("media")}>Media</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="Design"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("Design")}>Design</span>
+<span className={`category mr-4 ml-6 ${selectedCategory==="Data Science"?'bg-blue-500 text-white':
+""}`} onClick={()=>setSelectedCategory("Data Science")}>Data Science</span>
+        </div>
+        </div>
+        <div className="internships" id='container2'>
+<div className="internShip-Info flex">
+{
+filterInternShips.map(( data,index)=>(
+      
+        <div className="int-1 mt-6" key={index}>
+<p className='mb-4 mt-3' id='boxer'> <i className='bi bi-arrow-up-right text-blue-500' ></i> Actively Hiring</p>
+<p>{data.title}</p>
+<small className='text-slate-400 text-sm'>{data.company}</small>
+   
+        <hr className='mt-5' />
         <p className='mt-3' ><i class="bi bi-geo-alt-fill"></i> {data.location}  </p>
         <p className='mt-1'> <i class="bi bi-cash-stack"></i> {data.stipend}</p>
         <p className='mt-1'><i class="bi bi-calendar-fill"></i> {data.Duration}</p>
         <div className='more flex justify-between mt-6'>
             <span className='bg-slate-200 text-slate-400 w-20 rounded-sm text-center'>Internship</span>
    <Link to={`/detailInternship?q=${data._id}`}>
-   <span className='text-blue-500 mr-2'> View details <i class="bi bi-chevron-right"></i></span>
+   <span className='text-blue-500 mr-2'> 
+View details <i class="bi bi-chevron-right"></i>
+   </span>
    </Link>
         </div>
-
         </div>
-                        
-                    ))
-                  }
-              </div>
-            </div>
-            <div className="flex BUttons mt-9">
+        
+        
+    ))
+}
+
+</div>
+        </div>
+<div className="flex BUttons mt-9">
 <button className='back' onClick={()=>handleSlideIntern('left')}> <i className='bi bi-chevron-left' id='sideBack'></i></button>
 <button  className="next" onClick={()=>handleSlideIntern('right')}> <i className='bi bi-chevron-right' id='slide'></i></button>
 </div>
-           
-          </div>
-       <Job/>
-
-
-    <hr />
-    <div className="analytics mt-8 flex flex-wrap justify-center items-center text-center">
-       <div className="text-block mt-5">
-        <span className='font-bold text-6xl text-blue-600'>300K+</span>
-         <p>companies hiring</p>
-       </div>
-       <div className="text-block mt-5">
-        <span className='font-bold text-6xl text-blue-600'>10K+</span>
-         <p>new opening everyday</p>
-       </div>
-       <div className="text-block mt-5">
-        <span className='font-bold text-6xl text-blue-600'>21Mn+</span>
-         <p>active students</p>
-       </div>
-       <div className="text-block mt-5">
-        <span className='font-bold text-6xl text-blue-600'>600K+</span>
-         <p>learners</p>
-       </div>
-
     </div>
+<Job/>
 
+<hr />
+<div className="analytics mt-8 flex flex-wrap justify-center items-center text-center">
+    <div className="text-block m-5">
+    <span className='font-bold text-6xl text-blue-600'>300K+</span>
+<p>companies hiring</p>
+    </div>
+<div className="text-block m-5">
+    <span className='font-bold text-6xl text-blue-600'>10K+</span>
+    <p>new openings everyday</p>
+</div>
+<div className="text-block m-5">
+    <span className='font-bold text-6xl text-blue-600'>21Mn+</span>
+    <p>active students</p>
+</div>
+<br />
+<hr className='mx-4 my-8 border-t border-blue-600'></hr>
+<div className="text-block m-5">
+    <span className='font-bold text-6xl text-blue-600'>600K+</span>
+    <p>learners</p>
+</div>
+</div>
 
-    <div className="logins flex  h-32 mt-8">
+<div className="logins flex  h-32 mt-8">
 <div className="cont">
 <p className="flex justify-center text-white text-xl items-center m-5 w-30">Empower your career with InternArea today</p>
 </div>
@@ -169,44 +174,64 @@ const handleSlideIntern=(direction)=>{
                <p class="px-4 py-3 w-5/6 text-center text-sm text-gray-600 font-bold ">Sign in with Google</p>
   </a>
   <a to="/register">
-    <button className='btn6 '> Register</button></a>
+    <button className='btn6 '><Link  to="/register">Register</Link></button></a>
     </div>
 </div>
 
+<div className="hideforbigs block lg:hidden"> 
+    <section id="bottom-navigation" className="fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+        <div id="tabs" className="flex justify-between items-center">
+            <a className="w-full flex flex-col items-center justify-between text-center pt-2 pb-1" href="/">
+                <i className="bi bi-house-door text-xl hover:text-blue-400"></i>
+                <span className="tab tab-home block text-xs">Home</span>
+            </a>
+            <a className="w-full flex flex-col items-center justify-center text-center pt-2 pb-1" href="/internship">
+            <svg stroke='currentColor' fill='currentColor' stroke-width="0" viewBox='0 0 24 24' className='text-2xl ml-18 hover:text-blue-400' height="1em" xmlns="http://www.w3.org//2000/svg">
+              <path d="M1.94631 9.31555C1.42377 9.14137 1.41965 8.86034 1.95706 8.6812L21.0433 2.31913C21.5717 2.14297 21.8748 2.43878 21.7268 2.95706L16.2736 22.0433C16.1226 22.5718 15.8179 22.5901 15.5946 22.0877L12.0002 14.0002L18.0002 6.00017L10.0002 12.0002L1.94631 9.31555Z"></path>
+          </svg>
+                <span className="tab tab-home block text-xs">Internship</span>
+            </a>
+            <a className="w-full flex flex-col items-center justify-center text-center pt-2 pb-1" href="/Jobs">
+                <i className="bi bi-briefcase text-xl hover:text-blue-400"></i>
+                <span className="tab tab-home block text-xs">Jobs</span>
+            </a>
+        </div>
+    </section>
+</div>
     </>
-    
   )
 }
 
 export default Home
 
 
-function sideScroll(element, direction,speed,distance,step) {
-  let scrollAmount = 0;
-  const slideTimer = setInterval(function() {
-    if (direction === 'left') {
-      element.scrollLeft -= step;
-    } else {
-      element.scrollLeft += step;
-    }
-    scrollAmount += step;
-    if (scrollAmount >= distance) {
-      window.clearInterval(slideTimer);
-    }
-  }, speed);
+function sideScroll(element, direction,speed,distance,step){
+    let scrollAmount=0;
+    const slideTimer=setInterval(function(){
+        if (direction==='left') {
+            element.scrollLeft-=step
+        }
+        else{
+            element.scrollLeft+=step
+        }
+        scrollAmount+=step;
+        if(scrollAmount>=distance){
+            window.clearInterval(slideTimer)
+        }
+    },speed)
 }
-
-function sideScrollIntern(element, direction, speed, distance, step) {
-  let scrollAmount = 0;
-  const slideTimer = setInterval(function() {
-    if (direction === 'left') {
-      element.scrollLeft -= step;
-    } else {
-      element.scrollLeft += step;
-    }
-    scrollAmount += step;
-    if (scrollAmount >= distance) {
-      window.clearInterval(slideTimer);
-    }
-  }, speed);
+function sideScrollIntern(element, direction,speed,distance,step){
+    let scrollAmount=0;
+    const slideTimer=setInterval(function(){
+        if (direction==='left') {
+            element.scrollLeft-=step
+        }
+        else{
+            element.scrollLeft+=step
+        }
+        scrollAmount+=step;
+        if(scrollAmount>=distance){
+            window.clearInterval(slideTimer)
+        }
+    },speed)
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import { Link, useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import { selectUser } from '../../Feature/Userslice'
@@ -25,7 +24,7 @@ const hide=()=>{
 const [data,setData] =useState([])
 useEffect(()=>{
   const fetchData= async()=>{
- const response=await axios.get(`https://internshipbackend-vbfz.onrender.com/api/internship/${id}`)
+ const response=await axios.get(`https://internareabackend-hui2.onrender.com/api/internship/${id}`)
  setData(response.data)
 
  const {company,category}=response.data;

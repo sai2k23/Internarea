@@ -16,6 +16,7 @@ import Profile from './profile/Profile';
 import AdminLogin from './Admin/AdminLogin';
 import Adminpanel from './Admin/Adminpanel';
 import Postinternships from './Admin/Postinternships';
+import PostJOb from './Admin/PostJob';
 import ViewAllApplications from './Admin/ViewAllApplications';
 import DetailApplications from './Applications/DetailApplications';
 import UserApplicatiom from './profile/UserApplicatiom';
@@ -54,6 +55,7 @@ useEffect(()=>{
       <Route path='/adminLogin' element={<AdminLogin/>}/>
       <Route path='/adminepanel' element={<Adminpanel/>}/>
       <Route path='/postInternship' element={<Postinternships/>}/>
+      <Route path='/postJob' element={<PostJOb/>}/>
       <Route path='/applications' element={<ViewAllApplications/>}/>
       <Route path='/UserapplicationDetail' element={< UserapplicationDetail/>}/>
       <Route path='/userapplication' element={<UserApplicatiom/>}/>

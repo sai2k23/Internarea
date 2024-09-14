@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import "./inter.css"
-
-import compLogo from "../../Assests/netflix.png"
+import compLogo from "../../Assets/netflix.png"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 function Intern() {
@@ -24,7 +23,7 @@ const [InternData,setInternData]=useState([])
   useEffect(()=>{
     const fetchData= async()=>{
         try {
-        const response= await axios.get(`https://internshipbackend-vbfz.onrender.com/api/internship`)
+        const response= await axios.get(`https://internareabackend-hui2.onrender.com/api/internship`)
         setInternData(response.data)
         console.log(response.data)
     } catch (error) {
@@ -46,28 +45,24 @@ fetchData();
     setSearchLocation(loactionValue);
     setFilterInternship([serachCategory,loactionValue])
   }
-  const filterInterships = (category, location) => {
+  const filterInterships = useCallback((category, location) => {
     if (InternData && InternData.length > 0) {
-        const filterData = InternData.filter(
-            (internship) => {
-                const internshipCategory = internship.category ? internship.category.toLowerCase() : '';
-                const internshipLocation = internship.location ? internship.location.toLowerCase() : '';
-
-                const categoryMatch = category ? internshipCategory.includes(category.toLowerCase()) : true;
-                const locationMatch = location ? internshipLocation.includes(location.toLowerCase()) : true;
-
-                return categoryMatch && locationMatch;
-            }
-        );
-        setFilterInternship(filterData);
+      const filterData = InternData.filter((internship) => {
+        const internshipCategory = internship.category ? internship.category.toLowerCase() : '';  // Handle undefined
+        const internshipLocation = internship.location ? internship.location.toLowerCase() : '';  // Handle undefined
+  
+        const categoryMatch = category ? internshipCategory.includes(category.toLowerCase()) : true;
+        const locationMatch = location ? internshipLocation.includes(location.toLowerCase()) : true;
+  
+        return categoryMatch && locationMatch;
+      });
+      setFilterInternship(filterData);
     }
-};
-
-
+  }, [InternData]);
+  
   useEffect(() => {
     filterInterships(serachCategory, searchLoaction);
   }, [searchLoaction, serachCategory]);
-console.log(filterInternship)
 
  
   return (
@@ -110,12 +105,13 @@ console.log(filterInternship)
 
   <div className="all-internships">
     <div className=" show show2 flex justify-center">
-      <p className='filterico text-center' onClick={showDiv}>filter <i class="bi bi-funnel  text-blue-400"></i>   </p>
+      <p className='filterico text-center' onClick={showDiv}>filter <i class="bi bi-funnel  text-blue-500"></i></p>
 
     </div>
-    <p className='head font-bold text-lg text-center '  >{filterInternship.length} total internships</p>
+    <p className='head font-bold text-lg text-center '  >{filterInternship.length} total internships <i className='bi bi-chevron-down'></i></p>
 
-    { filterInternship.map((data,index)=>(
+    { 
+    filterInternship.map((data,index)=>(
 
 <div className='shadow-lg rounded-lg bg-white m-7 ' id='display'>
   <div className="m-4">
@@ -198,6 +194,26 @@ console.log(filterInternship)
 }
 </div>
 
+<div className="hideforbigs block lg:hidden"> 
+    <section id="bottom-navigation" className="fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+        <div id="tabs" className="flex justify-between items-center">
+            <a className="w-full flex flex-col items-center justify-between text-center pt-2 pb-1" href="/">
+                <i className="bi bi-house-door text-xl hover:text-blue-400"></i>
+                <span className="tab tab-home block text-xs">Home</span>
+            </a>
+            <a className="w-full flex flex-col items-center justify-center text-center pt-2 pb-1" href="/internship">
+            <svg stroke='currentColor' fill='currentColor' stroke-width="0" viewBox='0 0 24 24' className='text-2xl ml-18 hover:text-blue-400' height="1em" xmlns="http://www.w3.org//2000/svg">
+              <path d="M1.94631 9.31555C1.42377 9.14137 1.41965 8.86034 1.95706 8.6812L21.0433 2.31913C21.5717 2.14297 21.8748 2.43878 21.7268 2.95706L16.2736 22.0433C16.1226 22.5718 15.8179 22.5901 15.5946 22.0877L12.0002 14.0002L18.0002 6.00017L10.0002 12.0002L1.94631 9.31555Z"></path>
+          </svg>
+                <span className="tab tab-home block text-xs">Internship</span>
+            </a>
+            <a className="w-full flex flex-col items-center justify-center text-center pt-2 pb-1" href="/Jobs">
+                <i className="bi bi-briefcase text-xl hover:text-blue-400"></i>
+                <span className="tab tab-home block text-xs">Jobs</span>
+            </a>
+        </div>
+    </section>
+</div>
 </>
     
   )

@@ -137,7 +137,7 @@
   width: 80%;
   margin-left: 23px;
   background: #ffff;
-  box-shadow: 0px 0px 2px -2px black;
+  box-shadow: 0 0 2px -2px black;
   border-radius: 12px;
 }
 
@@ -164,13 +164,13 @@
   left: 35%;
 }
 
+
 @media screen and (max-width: 768px) {
   .internships {
     width: 90%;
     background: #fafafa;
     white-space: nowrap;
     position: relative;
-
     left: 3%;
   }
   .internships {
@@ -204,6 +204,9 @@
   }
   .imgs{
     overflow-x:scroll;}
+    #bottom-navigation{
+      display: show;
+}
 }
 
 .info-inter {
@@ -260,7 +263,7 @@
 }
 
 #admin{
-  margin-top: 26px;
+  margin-top: 4px;
 }
 @media (max-width: 480px) {
   

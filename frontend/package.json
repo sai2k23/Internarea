@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://internshipbackend-vbfz.onrender.com/api",
+  "proxy": "https://internareabackend-hui2.onrender.com/api",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",

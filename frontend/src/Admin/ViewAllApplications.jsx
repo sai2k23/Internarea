@@ -7,7 +7,7 @@ function ViewAllApplications() {
     useEffect(()=>{
         const fetchApplication= async()=>{
         try {
-            const response=await axios.get("https://internshipbackend-vbfz.onrender.com/api/application")
+            const response=await axios.get("https://internareabackend-hui2.onrender.com/api/application")
 setApplication(response.data)
 
         } catch (error) {
@@ -17,7 +17,24 @@ setApplication(response.data)
         }
         fetchApplication()
         
-    },[])
+    },[]);
+
+    const handleStatusUpdate = async (id, status) => {
+      try {
+          await axios.post(`https://internareabackend-hui2.onrender.com/api/application/updateStatus`, {
+              id: id,
+              status: status
+          });
+          // Update the local state to reflect the new status
+          setApplication((prevState) =>
+              prevState.map((app) =>
+                  app._id === id ? { ...app, status: status } : app
+              )
+          );
+      } catch (error) {
+          alert('Error updating status');
+      }
+  };
 console.log(application)
 
   return (
@@ -52,7 +69,27 @@ console.log(application)
             <td className='whitespace-nowrap px-6 py-4'>{new Date(data?.createAt).toLocaleDateString()}</td>
             <td className='whitespace-nowrap px-6 py-4'>{data.user.name}</td>
             <td className='whitespace-nowrap px-6 py-4'><Link to={`/detailApplication?a=${data._id}`}><i class="bi bi-envelope-open text-blue-500"></i></Link></td>
-            <td className='whitespace-nowrap px-6 py-4'>{data.status}</td>
+            <td className='whitespace-nowrap px-6 py-4'>
+            {data.status === 'pending' && (
+                                                <>
+                                                    <button
+                                                        onClick={() => handleStatusUpdate(data._id, 'accepted')}
+                                                        className="text-green-500 font-semibold mr-3"
+                                                    >
+                                                        Accept
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleStatusUpdate(data._id, 'rejected')}
+                                                        className="text-red-500 font-semibold"
+                                                    >
+                                                        Reject
+                                                    </button>
+                                                </>
+                                            )}
+
+
+
+            </td>
             </tr>
             </>
         ))

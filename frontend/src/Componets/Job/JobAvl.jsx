@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./job.css"
-import compLogo from "../../Assests/netflix.png"
+import compLogo from "../../Assets/netflix.png"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 function JobAvl() {
@@ -12,7 +12,7 @@ const [isDivVisible,setDivVisible]=useState(false)
 useEffect(()=>{
   const fetchData= async()=>{
       try {
-      const response= await axios.get(`https://internshipbackend-vbfz.onrender.com/api/job`)
+      const response= await axios.get(`https://internareabackend-hui2.onrender.com/api/job`)
       setJobData(response.data)
   } catch (error) {
          console.log(error) 
@@ -177,6 +177,29 @@ useEffect(() => {
       </>
     )
    }
+
+
+<div className="hideforbigs block lg:hidden"> 
+    <section id="bottom-navigation" className="fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+        <div id="tabs" className="flex justify-between items-center">
+            <a className="w-full flex flex-col items-center justify-between text-center pt-2 pb-1" href="/">
+                <i className="bi bi-house-door text-xl hover:text-blue-400"></i>
+                <span className="tab tab-home block text-xs">Home</span>
+            </a>
+            <a className="w-full flex flex-col items-center justify-center text-center pt-2 pb-1" href="/internship">
+            <svg stroke='currentColor' fill='currentColor' stroke-width="0" viewBox='0 0 24 24' className='text-2xl ml-18 hover:text-blue-400' height="1em" xmlns="http://www.w3.org//2000/svg">
+              <path d="M1.94631 9.31555C1.42377 9.14137 1.41965 8.86034 1.95706 8.6812L21.0433 2.31913C21.5717 2.14297 21.8748 2.43878 21.7268 2.95706L16.2736 22.0433C16.1226 22.5718 15.8179 22.5901 15.5946 22.0877L12.0002 14.0002L18.0002 6.00017L10.0002 12.0002L1.94631 9.31555Z"></path>
+          </svg>
+                <span className="tab tab-home block text-xs">Internship</span>
+            </a>
+            <a className="w-full flex flex-col items-center justify-center text-center pt-2 pb-1" href="/Jobs">
+                <i className="bi bi-briefcase text-xl hover:text-blue-400"></i>
+                <span className="tab tab-home block text-xs">Jobs</span>
+            </a>
+        </div>
+    </section>
+</div>
+
    </>
   )
 }

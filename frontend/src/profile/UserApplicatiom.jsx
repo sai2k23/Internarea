@@ -10,14 +10,35 @@ import { selectUser } from '../Feature/Userslice';
 function UserApplicatiom() {
 
     const [application,setApplication]=useState([])
+    const [showPopup, setShowPopup] = useState(false); // New state for pop-up
+    const [popupMessage, setPopupMessage] = useState(''); // New state for the pop-up message
+    const [popupType, setPopupType] = useState(''); // New state to differentiate between accepted and rejected
     const user= useSelector(selectUser)
     const userapplication=application.filter(app=>app.user?.name===user.name)
     useEffect(()=>{
         const fetchApplication= async()=>{
         try {
-            const response=await axios.get("https://internshipbackend-vbfz.onrender.com/api/application")
+            const response=await axios.get("https://internareabackend-hui2.onrender.com/api/application")
 setApplication(response.data)
-
+response.data.forEach(app => {
+  if (app.user?.name === user.name) {
+    if (app.status === 'accepted') {
+      setPopupMessage(`Your application has been accepted`);
+      setPopupType('accepted');
+      setShowPopup(true);
+    } else if (app.status === 'rejected') {
+      setPopupMessage(`Your application has been rejected`);
+      setPopupType('rejected');
+      setShowPopup(true);
+    }
+  }
+});
+// Hide the pop-up after 3 seconds
+if (showPopup) {
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
+}
         } catch (error) {
             alert(error)
         }
@@ -25,10 +46,16 @@ setApplication(response.data)
         }
         fetchApplication()
         
-    },[])
+    },[user.name, showPopup]);
 console.log(application)
   return (
     <div>
+        {/* Pop-up Notification */}
+        {showPopup && (
+        <div className={`popup ${popupType === 'rejected' ? 'rejected' : 'accepted'}`}>
+          <p>{popupMessage}</p>
+        </div>
+      )}
         <div className='hide'>
      
     <h1 className='text-3xl font-semibold mt-3'>Total Applications</h1>
@@ -53,7 +80,7 @@ console.log(application)
         userapplication.map((data)=>(
             <>
     
-            <tr className='border-b'>
+            <tr className='border-b ' key={data.id}>
             <td className='whitespace-nowrap px-6 py-4'>{data.company}</td>
             <td className='whitespace-nowrap px-6 py-4'>{data.category}</td>
             <td className='whitespace-nowrap px-6 py-4'>{new Date(data?.createAt).toLocaleDateString()}</td>

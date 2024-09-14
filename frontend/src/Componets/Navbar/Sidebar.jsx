@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import logo from "../../Assests/logo.png"
+import logo from "../../Assets/logo.png"
 import './sidebar.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
