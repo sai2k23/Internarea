@@ -1,0 +1,41 @@
+.resume-list {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.contact-info, .summary, .education-section, .experience-section, .skills-section, .certifications-section, .achievements-section {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h3 {
+    color: #007BFF;
+}
+
+.education-item, .experience-item {
+    margin-bottom: 15px;
+}
+
+.education-item h4, .experience-item h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+p {
+    margin: 5px 0;
+    color: #666;
+}

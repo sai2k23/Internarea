@@ -12,7 +12,7 @@ const [isDivVisible,setDivVisible]=useState(false)
 useEffect(()=>{
   const fetchData= async()=>{
       try {
-      const response= await axios.get(`https://internareabackend-hui2.onrender.com/api/job`)
+      const response= await axios.get(`https://internareabackend-tdwc.onrender.com/api/job`)
       setJobData(response.data)
   } catch (error) {
          console.log(error) 

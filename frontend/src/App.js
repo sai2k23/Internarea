@@ -21,6 +21,8 @@ import ViewAllApplications from './Admin/ViewAllApplications';
 import DetailApplications from './Applications/DetailApplications';
 import UserApplicatiom from './profile/UserApplicatiom';
 import UserapplicationDetail from "./Applications/DetailApplicationUser"
+import ResumeBuilder from './Componets/Resume/ResumeBuilder';
+import ResumeList from './Componets/Resume/ResumeList';
 function App() {
 const user=useSelector(selectUser);
 const dispatch=useDispatch();
@@ -59,6 +61,8 @@ useEffect(()=>{
       <Route path='/applications' element={<ViewAllApplications/>}/>
       <Route path='/UserapplicationDetail' element={< UserapplicationDetail/>}/>
       <Route path='/userapplication' element={<UserApplicatiom/>}/>
+      <Route path="/resume-builder" element={<ResumeBuilder />} />
+      <Route path="/resume-list" element={< ResumeList />} />
      </Routes>
      <Footer/>
     </div>

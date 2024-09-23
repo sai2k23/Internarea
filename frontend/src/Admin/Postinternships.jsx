@@ -52,7 +52,7 @@ else{
         AdditionalInfo:additionalInfo,
 
     }
-axios.post("https://internareabackend-hui2.onrender.com/api/internship",bodyJosn).then((res)=>{
+axios.post("https://internareabackend-tdwc.onrender.com/api/internship",bodyJosn).then((res)=>{
     console.log(res.data)
   }).catch((err)=>
   console.log(err))

@@ -113,7 +113,7 @@ const user=useSelector(selectUser)
   {
     user?(
         <>
-        <button className='bt-log' id='bt' onClick={logoutFunction}>Logout <i class="bi bi-box-arrow-right"></i></button>
+        <button className='bt-log' id='bt' onClick={logoutFunction}>Logout</button>
         </>
     ):(
         <>

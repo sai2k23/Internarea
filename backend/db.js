@@ -1,7 +1,13 @@
-const mongoose=require("mongoose")
-require('dotenv').config()
-DATABASE=process.env.DATABASEURL
-const url=DATABASE
-module.exports.connect=()=>{
-    mongoose.connect(url,console.log("Database is connected"))
-}
+const mongoose = require("mongoose");
+require('dotenv').config();
+
+const DATABASE = process.env.DATABASEURL;
+
+module.exports.connect = async () => {
+    try {
+        await mongoose.connect(DATABASE);
+        console.log("Database is connected");
+    } catch (error) {
+        console.error("Error connecting to the database", error);
+    }
+};

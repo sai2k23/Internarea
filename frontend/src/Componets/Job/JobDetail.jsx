@@ -18,7 +18,7 @@ const id=params.get("q")
   const [data,setData] =useState([])
 useEffect(()=>{
    const fetchData= async()=>{
-  const response=await axios.get(`https://internareabackend-hui2.onrender.com/api/job/${id}`)
+  const response=await axios.get(`https://internareabackend-tdwc.onrender.com/api/job/${id}`)
   
   const {company,category}=response.data;
   setCompany(company)
@@ -47,7 +47,7 @@ const submitApplication= async()=>{
       user:user,
       Application:id
   }
-  await axios.post("https://internareabackend-hui2.onrender.com/api/application",bodyJson).then((res)=>{
+  await axios.post("https://internareabackend-tdwc.onrender.com/api/applications",bodyJson).then((res)=>{
   }).catch((err)=>{
     alert("error happend")
   })

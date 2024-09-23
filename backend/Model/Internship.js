@@ -1,5 +1,5 @@
 const mongoose=require("mongoose")
- const InternshipShcema=new mongoose.Schema({
+ const InternshipSchema=new mongoose.Schema({
     title: String,
     company: String,
     location: String,
@@ -21,7 +21,7 @@ const mongoose=require("mongoose")
    
    
  })
- module.exports=mongoose.model("Internship",InternshipShcema)
+ module.exports=mongoose.model("Internship",InternshipSchema)
 
 
 

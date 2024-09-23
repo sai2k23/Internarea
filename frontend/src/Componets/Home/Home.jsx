@@ -16,7 +16,7 @@ const [internshipData,setInternshipData]=useState([])
 useEffect(()=>{
     const fetchData= async()=>{
         try {
-        const response= await axios.get(`https://internareabackend-hui2.onrender.com/api/internship`)
+            const response = await axios.get(`https://internareabackend-tdwc.onrender.com/api/internship`);
         setInternshipData(response.data)
     } catch (error) {
            console.log(error) 

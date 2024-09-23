@@ -1,0 +1,170 @@
+/* resumeBuilder.css */
+.resume-builder {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image-upload {
+    text-align: center;
+}
+
+
+
+.image-upload label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.image-upload img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.social-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-input img {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.social-input input {
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+h3 {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+h3 svg {
+    margin-right: 10px;
+    color: #007BFF; /* Customize the icon color */
+}
+
+.contact-info, .summary-section, .education-section, .experience-section, .skills-section, .certifications-section {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.contact-info input, 
+.education-item input, 
+.experience-item input, 
+textarea, 
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+.resume-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 12px 20px; /* Increased padding for better appearance */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    align-self: flex-end;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.resume-button:hover {
+    background-color: #0056b3;
+}
+
+.add-button {
+    background-color: #28a745;
+    margin-top: 10px;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+.education-item, .experience-item {
+    margin-bottom: 10px;
+}
+
+.education-item input, .experience-item input, .education-item select, .experience-item textarea {
+    margin-bottom: 10px;
+}
+
+.skills-section textarea, .certifications-section textarea {
+    margin-top: 10px;
+}
+
+/* Contact Info Section Styling */
+.contact-info div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info div svg {
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .resume-builder {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .social-input input {
+        width: 100%;
+    }
+}
