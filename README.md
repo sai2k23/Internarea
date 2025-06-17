@@ -1,5 +1,3 @@
-Live Server ;
-https://internshipsarea.netlify.app/
 # Internshala Clone (Intern Area)
 
 For Admin login :
@@ -8,6 +6,8 @@ username :admin
 
 This project is a clone of the Internshala platform, specifically focusing on the intern area. It is built using the MERN stack (MongoDB, Express.js, React.js, and Node.js). The project aims to provide a similar functionality to Internshala, where students can apply for internships, view job postings, and manage their applications. The project includes a back-end deployed on Render and a front-end hosted on Netlify.
 
+## 🌟 Live Demo
+[![Live - VisualExcel](https://img.shields.io/badge/Live%20Demo-Click%20Here-0f62fe?style=for-the-badge&logo=netlify&logoColor=white)](https://internshipsarea.netlify.app)
 ## Features
 
 - **User Authentication:** Users can register, login, and logout securely.
